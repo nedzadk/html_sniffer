@@ -25,6 +25,8 @@ else:
 if result<>-1:
     print "String found!!!!"
     print "Part of the string with offsets defined"
+    print "======================================="
     print html[result-offset_before:result+offset_after] #Show string based on defined offsets
+    print "======================================="
 else:
     print "String not found (info: search is not case sensitive)"   
