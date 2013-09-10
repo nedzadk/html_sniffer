@@ -71,7 +71,7 @@ while result < len(html):
         # cleaning (results that contains only html tags
         final_text = re.sub('<[^<]+?>', '', strip_string(html, result))
         # Strip whitespaces and compare the size, show only if result is bigger
-        # than length of the searched work
+        # than length of the searched word
         if len(final_text.strip()) > len(sys.argv[2]):
             print final_text.strip()
             print "--------------------------------------"
