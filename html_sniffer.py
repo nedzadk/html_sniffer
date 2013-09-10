@@ -44,8 +44,7 @@ html = " ".join(html.split())
 # convert to lower case for case insensitive search
 lower_string = html.lower()
 result = 0
-print "String found!!!!"
-print "Part of the string with offsets defined"
+print "Search results"
 print "============= BEGIN ==================="
 # Loop through html for multpiple search
 while result < len(html):
@@ -71,7 +70,9 @@ while result < len(html):
         # Calling strip_string function that cleans result and do some other
         # cleaning (results that contains only html tags
         final_text = re.sub('<[^<]+?>', '', strip_string(html, result))
-        if len(final_text) >= len(sys.argv[2]):
+        # Strip whitespaces and compare the size, show only if result is bigger
+        # than length of the searched work
+        if len(final_text.strip()) > len(sys.argv[2]):
             print final_text
             print "--------------------------------------"
     else:
