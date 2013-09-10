@@ -73,7 +73,7 @@ while result < len(html):
         # Strip whitespaces and compare the size, show only if result is bigger
         # than length of the searched work
         if len(final_text.strip()) > len(sys.argv[2]):
-            print final_text
+            print final_text.strip()
             print "--------------------------------------"
     else:
         print "=============== END =================="
