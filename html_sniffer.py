@@ -1,6 +1,11 @@
 import urllib2,sys,re
 
-heads = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11','Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3','Accept-Encoding': 'none','Accept-Language': 'en-US,en;q=0.8', 'Connection': 'keep-alive'}
+heads = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+         'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+         'Accept-Encoding': 'none',
+         'Accept-Language': 'en-US,en;q=0.8',
+         'Connection': 'keep-alive'}
 
 request = urllib2.Request(sys.argv[1],headers=heads) #Request to site with headers
 f = urllib2.urlopen(request)
@@ -29,4 +34,4 @@ if result<>-1:
     print html[result-offset_before:result+offset_after] #Show string based on defined offsets
     print "======================================="
 else:
-    print "String not found (info: search is not case sensitive)"   
+    print "String not found (info: search is not case sensitive)"
