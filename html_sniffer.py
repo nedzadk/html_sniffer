@@ -28,8 +28,10 @@ def strip_string(text, starting_offset):
     return new_text[::-1] + text[starting_offset] + new_text2
 
 
-heads = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64',
-         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+heads = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) \
+          AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64',
+         'Accept': 'text/html,application/xhtml+xml, \
+          application/xml;q=0.9,*/*;q=0.8',
          'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
          'Accept-Encoding': 'none',
          'Accept-Language': 'en-US,en;q=0.8',
@@ -45,8 +47,7 @@ html = " ".join(html.split())
 # convert to lower case for case insensitive search
 lower_string = html.lower()
 result = 0
-print "Search results"
-print "============= BEGIN ==================="
+lista = []
 # Loop through html for multpiple search
 while result < len(html):
 
@@ -74,10 +75,19 @@ while result < len(html):
         # Strip whitespaces and compare the size, show only if result is bigger
         # than length of the searched word
         if len(final_text.strip()) > len(sys.argv[2]):
-            print final_text.strip()
-            print "--------------------------------------"
+            # Check if found string already exist
+            if final_text.strip() not in lista:
+                # Check again if result contains searched term
+                if final_text.lower().find(sys.argv[2].lower()) != -1:
+                    # If everything OK add it to list
+                    lista.append(final_text.strip())
     else:
-        print "=============== END =================="
+        # Display found data
+        if len(lista) < 1:
+            print "Nothing found"
+        else:
+            for item in lista:
+                print item
         break
 
     result += len(sys.argv[2])
