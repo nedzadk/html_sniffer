@@ -70,7 +70,7 @@ while result < len(html):
         # Uncomment for dirty result (debug)
         # print html[result - offset_before:result + offset_after]
         # Calling strip_string function that cleans result and do some other
-        # cleaning (results that contains only html tags
+        # cleaning
         final_text = re.sub('<[^<]+?>', '', strip_string(html, result))
         # Strip whitespaces and compare the size, show only if result is bigger
         # than length of the searched word
