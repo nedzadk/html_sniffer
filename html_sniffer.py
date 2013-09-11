@@ -47,7 +47,7 @@ html = " ".join(html.split())
 # convert to lower case for case insensitive search
 lower_string = html.lower()
 result = 0
-lista = []
+items = []
 # Loop through html for multpiple search
 while result < len(html):
 
@@ -76,17 +76,17 @@ while result < len(html):
         # than length of the searched word
         if len(final_text.strip()) > len(sys.argv[2]):
             # Check if found string already exist
-            if final_text.strip() not in lista:
+            if final_text.strip() not in items:
                 # Check again if result contains searched term
                 if final_text.lower().find(sys.argv[2].lower()) != -1:
                     # If everything OK add it to list
-                    lista.append(final_text.strip())
+                    items.append(final_text.strip())
     else:
         # Display found data
-        if len(lista) < 1:
+        if len(items) < 1:
             print "Nothing found"
         else:
-            for item in lista:
+            for item in items:
                 print item
         break
 
