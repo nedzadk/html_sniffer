@@ -86,8 +86,10 @@ while result < len(html):
         if len(items) < 1:
             print "Nothing found"
         else:
+            x = 1
             for item in items:
-                print item
+                print x, item
+                x += 1
         break
 
     result += len(sys.argv[2])
