@@ -12,5 +12,5 @@ html_sniffer.py [url] [search_string] [starting offset] [ending offset]
 EXAMPLE
 =======
 
-python html_sniffer.py http://www.cnn.com "Syria" 0 100
+python html_sniffer.py http://www.aljazeera.com "obama" 0 100
 
