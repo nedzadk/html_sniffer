@@ -2,6 +2,16 @@
 import urllib2
 import sys
 import re
+from pymongo import MongoClient
+
+
+def write_to_db(items):
+    db = MongoClient()
+    watchit_db = db.watchit4_me
+    table = watchit_db.search_results
+    for item in items:
+        entry = ({"site": sys.argv[1], "result": item})
+        table.insert(entry)
 
 
 def strip_string(text, starting_offset):
@@ -87,6 +97,7 @@ while result < len(html):
             print "Nothing found"
         else:
             x = 1
+            write_to_db(items)
             for item in items:
                 print x, item
                 x += 1
