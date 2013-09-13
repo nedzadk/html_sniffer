@@ -14,3 +14,6 @@ EXAMPLE
 
 python html_sniffer.py http://www.aljazeera.com "obama" 0 100
 
+Screenshot
+
+![Sample](screenshot.png)
