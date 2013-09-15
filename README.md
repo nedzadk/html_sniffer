@@ -8,6 +8,8 @@ USAGE
 =====
 html_sniffer.py [url] [search_string] [starting offset] [ending offset]
 
+REQUIRES FOLLOWING: pymongo and MongoDB installed 
+
 
 EXAMPLE
 =======

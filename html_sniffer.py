@@ -2,41 +2,7 @@
 import urllib2
 import sys
 import re
-from pymongo import MongoClient
-
-
-def write_to_db(items):
-    db = MongoClient()
-    watchit_db = db.watchit4_me
-    table = watchit_db.search_results
-    for item in items:
-        entry = ({"site": sys.argv[1], "result": item})
-        table.insert(entry)
-
-
-def strip_string(text, starting_offset):
-    x = starting_offset
-    found = False
-    new_text = ""
-    while (found is not True):
-        x -= 1
-        if text[x] != '>':
-            new_text = new_text + text[x]
-        else:
-            found = True
-
-    x = starting_offset
-    found = False
-    new_text2 = ""
-    while (found is not True):
-        x += 1
-        if text[x] != '<':
-            new_text2 = new_text2 + text[x]
-        else:
-            found = True
-    # Revers first part of the result when returning result
-    return new_text[::-1] + text[starting_offset] + new_text2
-
+import parser
 
 heads = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) \
           AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64',
@@ -53,7 +19,6 @@ f = urllib2.urlopen(request)
 html = f.read()
 # remove multiple spaces (for better looking results)
 html = " ".join(html.split())
-
 # convert to lower case for case insensitive search
 lower_string = html.lower()
 result = 0
@@ -81,7 +46,7 @@ while result < len(html):
         # print html[result - offset_before:result + offset_after]
         # Calling strip_string function that cleans result and do some other
         # cleaning
-        final_text = re.sub('<[^<]+?>', '', strip_string(html, result))
+        final_text = re.sub('<[^<]+?>', '', parser.strip_string(html, result))
         # Strip whitespaces and compare the size, show only if result is bigger
         # than length of the searched word
         if len(final_text.strip()) > len(sys.argv[2]):
@@ -97,7 +62,7 @@ while result < len(html):
             print "Nothing found"
         else:
             x = 1
-            write_to_db(items)
+            parser.write_to_db(items)
             for item in items:
                 print x, item
                 x += 1
