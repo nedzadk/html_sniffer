@@ -3,6 +3,7 @@ import urllib2
 import sys
 import re
 import parser
+import mailer
 
 heads = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) \
           AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64',
@@ -66,6 +67,7 @@ while result < len(html):
             for item in items:
                 print x, item
                 x += 1
+            mailer.send_mail("nedzad@nechko.com","nedzadk@gmail.com","Found")
         break
 
     result += len(sys.argv[2])
